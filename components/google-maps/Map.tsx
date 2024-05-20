@@ -16,16 +16,15 @@ export type MapProps = {
 export function Map({ center, zoom }:MapProps) {
     return (
         <>
-        <span>key: {env.GOOGLE_MAPS_KEY}</span>
-        {/* <APIProvider apiKey={env.GOOGLE_MAPS_KEY}>
-            <GoogleMap
-            style={{width: '90vw', height: '800px'}}
-            defaultCenter={{lat: 22.54992, lng: 0}}
-            defaultZoom={3}
-            gestureHandling={'greedy'}
-            disableDefaultUI={true}
-            />
-        </APIProvider> */}
+            <APIProvider apiKey={env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}>
+                <GoogleMap
+                style={{width: '90vw', height: '800px'}}
+                defaultCenter={{lat: 22.54992, lng: 0}}
+                defaultZoom={3}
+                gestureHandling={'greedy'}
+                disableDefaultUI={true}
+                />
+            </APIProvider>
         </>
     )
 }

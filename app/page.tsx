@@ -1,13 +1,12 @@
 import { Map } from "@/components/google-maps/Map";
+import { MyPosition } from "@/components/google-maps/MyPosition";
 
 export default function Home() {
   return (
-    <main className="flex min-h-screen flex-col items-center p-24">
-      <h1 className="text-3xl font-semibold">Te achei</h1>
-      <Map
-      center={{lat: -10.926477432250977, lng: -37.07320022583008}}
-      zoom={10}
-      />
+    <main className="flex min-h-screen flex-col items-center">
+      <Map classname="w-screen h-screen">
+        <MyPosition/>
+      </Map>
     </main>
   );
 }

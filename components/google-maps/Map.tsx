@@ -2,6 +2,7 @@
 
 import { env } from "@/env"
 import { APIProvider, Map as GoogleMap} from "@vis.gl/react-google-maps"
+import { ReactNode } from "react"
 
 export type coordinates = {
     lat: number
@@ -9,11 +10,12 @@ export type coordinates = {
 }
 
 export type MapProps = {
+    children?: ReactNode
     center: coordinates
     zoom: number
 }
 
-export function Map({ center, zoom }:MapProps) {
+export function Map({ center, zoom, children }:MapProps) {
     return (
         <>
             <APIProvider apiKey={env.NEXT_PUBLIC_GOOGLE_MAPS_KEY}>
@@ -23,7 +25,9 @@ export function Map({ center, zoom }:MapProps) {
                 defaultZoom={3}
                 gestureHandling={'greedy'}
                 disableDefaultUI={true}
-                />
+                >
+                    { children }
+                </GoogleMap>
             </APIProvider>
         </>
     )

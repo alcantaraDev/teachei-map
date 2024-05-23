@@ -1,15 +1,18 @@
 'use client'
 
 import axios from "axios"
+import { LoaderCircle } from "lucide-react"
 import { useEffect, useState } from "react"
 
 export function NameForm() {
     const [ visibel, setVisible ] = useState(false)
+    const [ isFeching, setIsFeching ] = useState(false)
     let name = ""
 
     async function handleSubmit() {
         navigator.geolocation.getCurrentPosition(
         (pos) => {
+            setIsFeching(true)
             axios({
                 url: "/api/position",
                 method: "POST",
@@ -75,7 +78,14 @@ export function NameForm() {
                 py-2
                 bg-sky-500 text-white rounded-lg
                 hover:bg-sky-600
-                "> Salvar </button>
+                flex justify-center items-center
+                ">
+                    {
+                        isFeching?
+                        <LoaderCircle className="animate-spin" />:
+                        "Salvar"
+                    }
+                </button>
             </div>
         </>
     )

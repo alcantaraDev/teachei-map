@@ -1,3 +1,4 @@
+import { getPositions } from "@/services/notion/positions/getPostions";
 import { postPosition } from "@/services/notion/positions/postPosition";
 import { cookies } from "next/headers";
 import { NextRequest, NextResponse } from "next/server";
@@ -10,7 +11,10 @@ async function getBody(req:NextRequest) {
     }
 }
 
-// GET
+export async function GET(req:NextRequest) {
+    const positions = await getPositions()
+    return NextResponse.json(positions)
+}
 
 export async function POST(req:NextRequest) {
     const body = await getBody(req)

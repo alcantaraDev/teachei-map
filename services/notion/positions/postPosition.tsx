@@ -3,10 +3,6 @@ import { Notion } from ".."
 
 export type newPositionObj = {
     name: string
-    coordinates: {
-        lat: number
-        lng: number
-    }
 }
 
 export async function postPosition(newPositionObj:newPositionObj) {
@@ -22,21 +18,11 @@ export async function postPosition(newPositionObj:newPositionObj) {
                     }
                 }]
             },
-            lat: {
-                number: newPositionObj.coordinates.lat
-            },
-            lng: {
-                number: newPositionObj.coordinates.lng
-            }
         }
     }) as any
 
     return {
         id: createdPosition.id,
-        name: createdPosition.properties.name.title[0].text.content,
-        coordinates: {
-            lat: createdPosition.properties.lat.number,
-            lng: createdPosition.properties.lng.number
-        }
+        name: createdPosition.properties.name.title[0].text.content
     }
 }

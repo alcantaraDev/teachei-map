@@ -48,23 +48,14 @@ export function UserPosition() {
             }).then((res) => {
                 localStorage.setItem("teachei@user", JSON.stringify(res.data))
             }).catch(() => {
-                alert("Ops! erro ao conectar com o servidor")
+                // alert("Ops! erro ao conectar com o servidor")
             })
         }
     }, [position])
 
-    function handleClick() {
-        setPosition({
-            lat: -10.915518031929812, 
-            lng: -37.06402163848389
-        })
-    }
-
     return (
         <Marker
         position={position}
-        clickable={true}
-        onClick={handleClick}
         title={'Sua Posição'}
         />
     )

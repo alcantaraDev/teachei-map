@@ -10,26 +10,17 @@ export function NameForm() {
     let name = ""
 
     async function handleSubmit() {
-        navigator.geolocation.getCurrentPosition(
-        (pos) => {
-            setIsFeching(true)
-            axios({
-                url: "/api/position",
-                method: "POST",
-                data: {
-                    name: name,
-                    coordinates: {
-                        lat: pos.coords.latitude,
-                        lng: pos.coords.longitude
-                    }
-                }
-            }).then((res) => {
-                localStorage.setItem("teachei@user", JSON.stringify(res.data))
-                setVisible(false)
-            })
-        },
-        (error) => {
-            alert("Ops! Não consegui pegar a sua localização")
+        axios({
+            url: "/api/position",
+            method: "POST",
+            data: {
+                name: name
+            }
+        }).then((res) => {
+            localStorage.setItem("teachei@user", JSON.stringify(res.data))
+            setVisible(false)
+        }).catch(() => {
+            alert("Ops! erro ao conectar com o servidor")
         })
     }
 

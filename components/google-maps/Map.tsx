@@ -2,7 +2,7 @@
 
 import { env } from "@/env"
 import { APIProvider, Map as GoogleMap} from "@vis.gl/react-google-maps"
-import { ReactNode, useState } from "react"
+import { ReactNode, useEffect, useState } from "react"
 import { coordinates } from "./@types"
 
 export type MapProps = {
@@ -18,13 +18,15 @@ export function Map({ classname, defaultCenter, zoom=15, children }:MapProps) {
         lng: -37.07320022583008
     })
 
-    navigator.geolocation.getCurrentPosition((pos) => {
-        setUserPosition({
-            lat: pos.coords.latitude,
-            lng: pos.coords.longitude
+    useEffect(() => {
+        navigator.geolocation.getCurrentPosition((pos) => {
+            setUserPosition({
+                lat: pos.coords.latitude,
+                lng: pos.coords.longitude
+            })
+        },(error) => {
+            console.error(error)
         })
-    },(error) => {
-        console.error(error)
     })
 
     return (

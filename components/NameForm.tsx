@@ -24,7 +24,7 @@ export function NameForm() {
                     }
                 }
             }).then((res) => {
-                localStorage.setItem("teachei@user", res.data)
+                localStorage.setItem("teachei@user", JSON.stringify(res.data))
                 setVisible(false)
             })
         },
